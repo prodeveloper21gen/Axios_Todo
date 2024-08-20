@@ -49,53 +49,6 @@ async function updateTask(id, updatedTask) {
     }
 };
 
-function getData(tasks) {
-    box.innerHTML = '';
-
-    tasks.forEach((task, index) => {
-        const row = document.createElement('tr');
-
-        const cellIndex = document.createElement('td');
-        cellIndex.innerHTML = index + 1;
-        row.appendChild(cellIndex);
-
-        const cellName = document.createElement('td');
-        cellName.innerHTML = task.name;
-        if (task.status === 'inactive') {
-            cellName.classList.add('strikethrough');
-        };
-        row.appendChild(cellName);
-
-        const cellStatus = document.createElement('td');
-        cellStatus.classList.add('status');
-        cellStatus.innerHTML = task.status;
-        row.appendChild(cellStatus);
-
-        const cellActions = document.createElement('td');
-
-        const editButton = document.createElement('button');
-        editButton.className = 'btnEdit';
-        editButton.innerHTML = 'Edit';
-        editButton.onclick = () => openEditModal(task.id, task.name);
-        cellActions.appendChild(editButton);
-
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.classList.add('taskStatus');
-        checkbox.checked = task.status === 'inactive';
-        checkbox.onchange = () => taskStatus(task.id, checkbox.checked);
-        cellActions.appendChild(checkbox);
-
-        const deleteButton = document.createElement('button');
-        deleteButton.className = 'btnDelete';
-        deleteButton.innerHTML = 'Delete';
-        deleteButton.onclick = () => deleteTask(task.id);
-        cellActions.appendChild(deleteButton);
-
-        row.appendChild(cellActions);
-        box.appendChild(row);
-    });
-}
 
 function updateTasks(data) {
     const query = searchInput.value.toLowerCase();
@@ -152,5 +105,53 @@ btnEditTask.onclick = () => {
 
 searchInput.oninput = () => Get();
 selectFilter.onchange = () => Get();
+
+function getData(tasks) {
+    box.innerHTML = '';
+
+    tasks.forEach((task, index) => {
+        const row = document.createElement('tr');
+
+        const ind = document.createElement('td');
+        ind.innerHTML = index + 1;
+        row.appendChild(ind);
+
+        const Name = document.createElement('td');
+        Name.innerHTML = task.name;
+        if (task.status === 'inactive') {
+            Name.classList.add('strikethrough');
+        };
+        row.appendChild(Name);
+
+        const Status = document.createElement('td');
+        Status.classList.add('status');
+        Status.innerHTML = task.status;
+        row.appendChild(Status);
+
+        const Actions = document.createElement('td');
+
+        const editButton = document.createElement('button');
+        editButton.className = 'btnEdit';
+        editButton.innerHTML = 'Edit';
+        editButton.onclick = () => openEditModal(task.id, task.name);
+        Actions.appendChild(editButton);
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.classList.add('taskStatus');
+        checkbox.checked = task.status === 'inactive';
+        checkbox.onchange = () => taskStatus(task.id, checkbox.checked);
+        Actions.appendChild(checkbox);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'btnDelete';
+        deleteButton.innerHTML = 'Delete';
+        deleteButton.onclick = () => deleteTask(task.id);
+        Actions.appendChild(deleteButton);
+
+        row.appendChild(Actions);
+        box.appendChild(row);
+    });
+}
 
 Get();
