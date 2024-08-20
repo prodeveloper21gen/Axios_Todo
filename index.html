@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="bon">
+        <h1>DEV TODO {✓}</h1>
+        <h4>DO it now</h4>
+        <input class="searchInp" type="search" placeholder="🔍 Search by {Name...}">
+        <select class="Select">
+            <option value="">All</option>
+            <option class="active" value="inactive">Inactive</option>
+            <option class="inactive" value="active">Active</option>
+        </select>
+        <button class="btnOpenModal">Add Task</button>
+        <div class="bob">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Task name</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="box"></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal" id="taskModal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h2>Add New Task</h2>
+            <input class="addName" type="text" placeholder="Enter task name...">
+            <button class="btnSaveTask">Save Task</button>
+        </div>
+    </div>
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <button class="close-edit">×</button>
+            <h2>Edit Task</h2>
+            <input class="editName" type="text" placeholder="Edit task name...">
+            <button class="btnEditTask">Update Task</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
